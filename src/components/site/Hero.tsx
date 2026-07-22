@@ -20,7 +20,7 @@ export default function Hero() {
 
         <AnimatedName
           name={profile.name}
-          className="name-gradient font-serif text-4xl font-semibold sm:text-5xl"
+          className="name-gradient font-serif text-3xl font-semibold sm:text-5xl"
         />
 
         <BlurFade delay={0.2}>
@@ -42,7 +42,7 @@ export default function Hero() {
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <div className="mt-8 flex flex-nowrap items-center gap-2">
+          <div className="mt-8 flex flex-wrap items-center gap-2.5">
           <div className="lift inline-flex items-stretch overflow-hidden rounded-md bg-foreground text-background">
             <a
               href="/resume.pdf"
