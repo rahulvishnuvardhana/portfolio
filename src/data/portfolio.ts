@@ -10,7 +10,7 @@ export const profile = {
   location: "Boston, MA",
   email: "vishnuvardhana.r@northeastern.edu",
   phone: "+1 (617) 602-8473",
-  linkedin: "https://www.linkedin.com/in/rahul-vishnuvardhana-197890266/",
+  linkedin: "https://www.linkedin.com/in/rahulvishnuvardhana",
   github: "https://github.com/rahulvishnuvardhana",
 };
 
