@@ -34,7 +34,7 @@ A clean, fast, single-page site with an editorial type system and a restrained b
 
 ```bash
 # 1. clone
-git clone https://github.com/rahulvishnuvaradhana32-ctrl/portfolio.git
+git clone https://github.com/rahulvishnuvardhana/portfolio.git
 cd portfolio
 
 # 2. install
