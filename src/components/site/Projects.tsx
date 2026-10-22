@@ -10,7 +10,7 @@ export default function Projects() {
     <Section
       id="projects"
       title="Projects"
-      subtitle="What I've *shipped*: real products you can open. Hover any demo to watch it run."
+      subtitle="Proof, not *promises*: live products you can open. Hover any demo to watch it run."
     >
       <div className="space-y-6 sm:space-y-8">
         {work.map((p, i) => (

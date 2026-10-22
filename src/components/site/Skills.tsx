@@ -4,7 +4,7 @@ import BlurFade from "./BlurFade";
 
 export default function Skills() {
   return (
-    <Section id="skills" title="Skills" subtitle="Tools I have used in *production*, grouped the way job posts list them.">
+    <Section id="skills" title="Skills" subtitle="The toolkit, grouped the way your job post *lists* it.">
       <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((col, i) => (
           <BlurFade key={col.title} delay={i * 0.05}>

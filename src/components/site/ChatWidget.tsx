@@ -30,7 +30,7 @@ function save(s: Stored) {
 /** Opening messages shown to every visitor (not sent to Slack). */
 const GREETING = [
   "Hi, I'm Rahul, an M.S. student in Electrical and Computer Engineering at Northeastern University, specializing in machine learning.",
-  "I'm open to co-op and full-time roles. Feel free to ask about my work, a project, or an opportunity. I usually reply within a few hours.",
+  "Hiring for a Spring 2027 co-op, or curious how a project works? Ask away. Replies usually come within a few hours."
 ];
 
 /** One-tap openers: they fill the message box so the visitor can edit before sending. */

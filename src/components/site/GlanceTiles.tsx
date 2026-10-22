@@ -76,7 +76,7 @@ export default function GlanceTiles() {
       {/* Career */}
       <a href="#experience" className={tile}>
         <span className={big}>3+ yrs</span>
-        <span className={small}>Data engineering at Brown Brothers Harriman · cut incident resolution time 50%</span>
+        <span className={small}>Data engineering at Brown Brothers Harriman · incidents resolved 50% faster</span>
         <span className="mt-auto inline-flex items-center gap-1 pt-3 text-xs font-medium text-accent">
           View timeline
           <ArrowUpRight className="h-3.5 w-3.5 rotate-90 transition-transform group-hover:translate-y-0.5" />

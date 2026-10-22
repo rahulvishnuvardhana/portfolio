@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const CHAPTERS = [
+  { id: "value", label: "Value" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },

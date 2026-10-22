@@ -16,7 +16,7 @@ export default function Experience() {
     <Section
       id="experience"
       title="Experience & Education"
-      subtitle="3+ years keeping a global bank's data pipelines *running*, now an M.S. in machine intelligence."
+      subtitle="Three years where the numbers had to be *right* every morning, now an M.S. in machine intelligence."
     >
       <ol className="relative max-w-4xl">
         <span aria-hidden="true" className="absolute top-2 bottom-2 left-[1.375rem] w-px bg-line" />

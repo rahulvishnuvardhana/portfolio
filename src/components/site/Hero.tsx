@@ -93,7 +93,8 @@ export default function Hero() {
           </BlurFade>
 
           <BlurFade delay={0.34}>
-            <dl className="mt-7 space-y-2 text-sm">
+            <p className="mt-7 font-mono text-[11px] tracking-wider text-faint uppercase">Where I fit on your team</p>
+            <dl className="mt-2 space-y-2 text-sm">
               {roleFit.map((r) => (
                 <div key={r.role} className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
                   <dt className="w-36 shrink-0 font-medium text-foreground">{r.role}</dt>

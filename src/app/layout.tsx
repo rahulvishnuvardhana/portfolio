@@ -32,7 +32,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Rahul Vishnuvardhana · ML & AI Engineer, Spring 2027 co-op",
   description:
-    "ML and AI engineer pursuing an M.S. in ECE at Northeastern, with 3+ years running data pipelines for Brown Brothers Harriman. Builds production ML and grounded AI tools. Available for a Spring 2027 co-op.",
+    "ML and AI engineer for teams that need models to keep working after the demo. M.S. ECE at Northeastern, 3+ years of production data engineering for Brown Brothers Harriman. Available for a Spring 2027 co-op.",
   authors: [{ name: "Rahul Vishnuvardhana" }],
   keywords: [
     "Machine Learning Engineer",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rahul Vishnuvardhana · ML & AI Engineer, Spring 2027 co-op",
     description:
-      "Production ML and grounded AI tools, 3+ years of data engineering at Brown Brothers Harriman. Available for a Spring 2027 co-op.",
+      "ML and AI that keeps working after the demo: forecasting, grounded AI tools and production data habits. Available for a Spring 2027 co-op.",
     type: "website",
   },
 };

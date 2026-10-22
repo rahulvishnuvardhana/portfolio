@@ -3,8 +3,8 @@ export const profile = {
   firstName: "Rahul",
   lastNameTop: "Vishnu",
   lastNameBottom: "vardhana",
-  kicker: "ML & AI Engineer",
-  role: "I build ML and AI systems that hold up in production: a gateway that keeps apps online when an API fails, and an AI copilot that never makes things up. Before Northeastern, I spent 3+ years keeping data pipelines running for Brown Brothers Harriman.",
+  kicker: "ML & AI Engineer · Spring 2027 co-op",
+  role: "Your team needs ML that keeps working after the demo. I build models and AI tools that are measured, monitored, and honest about what they don't know, backed by 3+ years of running production data pipelines for a global financial firm.",
   tagline: "Applied ML · Sequence Modeling · Anomaly Detection · Data-Efficient Learning",
   mission: "Turning messy, real-world data into predictive, deployable systems.",
   location: "Boston, MA",
@@ -82,6 +82,28 @@ export const recruiterFacts = [
   { label: "Reply time", value: "Usually within a few hours, here or by email" },
 ];
 
+/** "What your team gets": the value proposition, each pillar tied to proof. */
+export const pitch = [
+  {
+    title: "Models that warn before things break",
+    body: "Forecasting with calibrated confidence and automatic failover, so on-call engineers act before customers notice a problem.",
+    proof: [{ label: "LEO Gateway", href: "#leo-gateway" }],
+  },
+  {
+    title: "AI that only says what it can back up",
+    body: "Retrieval grounded in real records, with citations and human review for low-confidence answers, so a hallucination never reaches a user.",
+    proof: [
+      { label: "TraceOp", href: "#traceop" },
+      { label: "LOEWISE", href: "#loewise" },
+    ],
+  },
+  {
+    title: "Production habits from day one",
+    body: "Structured logging, reconciliation checks and runbooks, learned on pipelines a financial firm depended on every morning, so the basics never need teaching.",
+    proof: [{ label: "Brown Brothers Harriman", href: "#experience" }],
+  },
+];
+
 /** "Roles I fit" strip: each role links to the projects that prove it. */
 export const roleFit = [
   { role: "ML Engineer", proof: ["LEO Gateway", "RNN vs. Transformer"] },
@@ -118,9 +140,9 @@ export const projects: Project[] = [
     accent: "Failover gateway that keeps API traffic alive through provider outages",
     summary: "Keeps apps working when an API provider goes down: it predicts failures before they happen and reroutes live requests to a healthy provider.",
     outcomes: [
-      "Python gateway on FastAPI and Docker that detects 5xx, 429 and timeout errors and retries requests on a healthy provider",
-      "Bi-LSTM with multi-head attention and focal loss on 1.94M rows: average ROC-AUC 0.8202 and PR-AUC 0.5383 across 1, 5 and 15-step horizons",
-      "Conformal prediction for calibrated risk scores, with ablation studies isolating what drove performance",
+      "Apps stay up when a provider fails: 5xx, 429 and timeout errors trigger an automatic retry on a healthy provider",
+      "Failure risk is forecast 1, 5 and 15 steps ahead, at an average ROC-AUC of 0.8202 and PR-AUC of 0.5383 on 1.94M rows",
+      "Every risk score carries a calibrated confidence range, so a team knows when to trust it",
     ],
     description:
       "A multi-horizon deep learning system that analyzes banking API failure patterns to support operational decision-making. I built a bidirectional 2-layer LSTM with multi-head attention and Conv1d feature extraction, trained with Focal Loss (γ=3.0) across 5 API types at horizons of 1, 5, and 15 steps. I engineered a 1.94M-row hybrid dataset from five real-world Kaggle sources (NAB EC2, Credit Card Fraud, PaySim, Network Anomaly, Web Logs) with 43 features and per-API scaling, reaching an average ROC-AUC of 0.8202 and PR-AUC of 0.5383 across the 1, 5, and 15-step horizons. I validated it with ablation studies, conformal prediction, and agent simulations, then wrapped it in a FastAPI and Docker reverse-proxy gateway that retries in-flight requests on a healthy provider when it sees 5xx, 429, or timeout errors. Trained on dual-GPU Kaggle T4×2 via PyTorch DataParallel and deployed live on Render.",
@@ -155,9 +177,9 @@ export const projects: Project[] = [
     accent: "AI Copilot for the RA/TA and Co-op Hunt",
     summary: "Helps Northeastern grad students find real research, teaching, and co-op roles, then drafts outreach that never invents a skill or a number.",
     outcomes: [
-      "2,693 Northeastern faculty across 7 colleges in one search, plus OpenAlex, NSF and NIH data",
-      "Live postings from the Greenhouse, Lever, Ashby and Workday boards, fit-scored and eligibility-aware",
-      "pgvector retrieval so Gemini drafts never invent a skill, metric or date, tested with Vitest and Playwright",
+      "One search across 2,693 Northeastern faculty in 7 colleges, plus live roles from Greenhouse, Lever, Ashby and Workday",
+      "Drafts are grounded in each user's own profile, so the AI never invents a skill, metric or date",
+      "Covered by Vitest unit tests and Playwright end-to-end tests, and live on Vercel",
     ],
     description:
       "A multi-user AI copilot for Northeastern graduate students hunting research, teaching, and co-op roles, built on one rule: never fabricate. It pulls live co-op roles from public ATS boards (Greenhouse, Lever, Ashby, Workday) and a directory of 2,693 Northeastern faculty across 7 colleges, scores fit honestly, and flags work-authorization blockers (F-1, CPT, OPT) before any effort is spent. Gemini, streamed through the Vercel AI SDK, drafts outreach, tailored resumes, and arXiv paper briefs grounded only in each user's own profile and resume, flagging gaps instead of inventing them. I added RAG over pgvector for outreach, isolated every account with Supabase row-level security, and exposed the copilot as agent tools through an MCP server.",
@@ -179,9 +201,9 @@ export const projects: Project[] = [
     accent: "Retrieval system that answers questions across FDA drug and patent records",
     summary: "Answers drug patent questions from cited FDA and patent records, and flags any answer it cannot back up for human review.",
     outcomes: [
-      "Prototyping agentic retrieval in Python over FDA Orange Book and patent records, answering from cited sources",
-      "Tests each answer against its source document and flags low-confidence extractions for human review",
-      "Cross-references Orange Book patent use codes with FDA labeling to flag where coverage exceeds approved uses",
+      "Every answer cites the FDA or patent record it came from",
+      "Low-confidence extractions go to a human before anyone sees them",
+      "Flags where a patent's listed use reaches beyond the drug's approved label",
     ],
     description:
       "An in-progress independent project. I am prototyping an agentic retrieval pipeline in Python over FDA Orange Book and patent records that answers drug patent questions from cited sources instead of scattered documents. Every answer is tested against its source document, and low-confidence extractions are flagged for human review so unverified answers never reach users. It also cross-references Orange Book patent use codes with FDA labeling to flag where coverage exceeds approved uses.",
@@ -193,9 +215,9 @@ export const projects: Project[] = [
     accent: "On-Device Vision Agent for Workplace Hazards",
     summary: "Spots a blocked fire exit on a site camera and alerts the supervisor in Slack, with the video never leaving the building.",
     outcomes: [
-      "I owned evaluation: labelled clips and an eval harness comparing 6 detection settings",
-      "Measured 0.57 s per camera check and capacity for 24 cameras on one box",
-      "Alerts cite OSHA 29 CFR 1910.37; raw video never leaves the box",
+      "Raw video never leaves the site: every model runs on one local Dell GB10",
+      "Measured on the box: 0.57 s per camera check and capacity for 24 cameras",
+      "My part: the evaluation, comparing six detection settings on labelled test clips",
     ],
     description:
       "An always-on safety agent my team built in one day at the Dell x NVIDIA AI Hackathon in Boston. It checks each camera frame with a local vision-language model (Qwen on vLLM), and when an exit is blocked, posts the hazard, the OSHA rule (29 CFR 1910.37), and a proposed fix to Slack for a supervisor to approve or reject. All inference runs on one Dell Pro Max with GB10, so raw video never leaves the box. I owned evaluation and the story: I filmed and labelled the test clips (phone, CCTV-angle, dim, degraded 360p), built the eval harness comparing six detection settings, and wrote the slides and writeup. Measured on the box: 0.57 s per camera check and capacity for 24 cameras.",
@@ -209,9 +231,9 @@ export const projects: Project[] = [
     accent: "Massachusetts Learner's Permit Practice",
     summary: "Helps Massachusetts learners pass the permit test with free, offline practice exams that bring back the questions they miss.",
     outcomes: [
-      "372 original questions across 7 categories with timed mock exams",
-      "Leitner-style spaced repetition brings a missed question back on the next exam",
-      "Installable PWA: the core needs no account or backend",
+      "372 original questions across 7 categories, with timed mock exams",
+      "A missed question comes back on the very next exam (Leitner-style spaced repetition)",
+      "Works offline as an installable app and needs no account",
     ],
     description:
       "A free, offline-first practice app for the Massachusetts learner's permit exam, with 372 original questions across 7 categories, timed mock exams built to difficulty targets, and Leitner-style spaced repetition that brings a missed question back on the very next exam. The core runs entirely in the browser as an installable PWA with progress kept on the device, so it needs no account or backend. Optional features switch on only with credentials: a moderated review system on Supabase behind an 18+ age gate, and a daily GitHub Actions monitor that emails me through Resend when the official manual changes, checking only metadata, never the PDF itself.",
@@ -225,9 +247,9 @@ export const projects: Project[] = [
     accent: "Robot Trajectory Prediction",
     summary: "Tested which model predicts where a robot moves next more accurately: a classic recurrent network or a physics-informed Transformer.",
     outcomes: [
-      "RNN baseline reached ADE 0.1494 m, FDE 0.3509 m, MSE 0.0214",
-      "Added physics-based kinematics to a linear Transformer for efficiency",
-      "Full technical report with a systematic benchmark across metrics",
+      "The RNN baseline reached ADE 0.1494 m, FDE 0.3509 m and MSE 0.0214 on the NCLT dataset",
+      "Physics-based kinematics were added to a linear Transformer to cut compute",
+      "Written up as a full technical report with a side-by-side benchmark",
     ],
     description:
       "A comparative study of a recurrent baseline against a Transformer for spatiotemporal robot trajectory prediction on the NCLT (North Campus Long-Term) autonomous-vehicle dataset. I built a complete 5-script RNN pipeline that reached 0.1494m ADE, 0.3509m FDE, and 0.0214 MSE (early stopping at epoch 74), after tracking down a NumPy normalization bug, and wrote a full technical report. I then introduced physics-based kinematics into a linear Transformer to improve computational efficiency and predictive accuracy, and benchmarked it systematically against the RNN baseline across every metric.",
@@ -372,12 +394,12 @@ export const journey: Milestone[] = [
       { title: "Graduate Engineer Trainee", when: "Mar 2022 to Aug 2022" },
     ],
     bullets: [
-      "Improved average incident resolution time by 50% across 50+ business-critical AutoSys and Redwood pipelines on Linux, instrumenting each job with structured logging and tracing failures through execution metrics to root cause.",
-      "Held business-reported data discrepancies to a maximum of 5 per month with Python services that validated API payloads and CSV feeds at ingest and reconciled them against source using row counts and checksums.",
-      "Designed ETL pipelines and database migrations in Python, SQL and Oracle Data Integrator that consolidated 8+ source systems into analytics-ready tables, turning an hour-long manual report into automated same-day delivery.",
-      "Refactored one-off scripts into reusable object-oriented components with help from GitHub Copilot and LLM assistants, standardizing configuration and database connections across the codebase.",
-      "Eliminated a single-person dependency across 250+ processes through runbooks, standard operating procedures and Tableau dashboards that let teammates and stakeholders self-serve.",
-      "As a Graduate Engineer Trainee, applied Python, SQL, Snowflake and Oracle across the graduate program and advanced into a specialized Data Engineer track within 3 months, ahead of schedule.",
+      "Average incident resolution time dropped 50% across 50+ business-critical AutoSys and Redwood pipelines on Linux, once every job carried structured logging that traced failures to root cause.",
+      "Business-reported data discrepancies held at 5 or fewer a month: Python services validated API payloads and CSV feeds at ingest and reconciled them against source with row counts and checksums.",
+      "8+ source systems consolidated into analytics-ready tables through ETL pipelines and database migrations in Python, SQL and Oracle Data Integrator, turning an hour-long manual report into automated same-day delivery.",
+      "One-off scripts became reusable object-oriented components with shared configuration and database connections, built with help from GitHub Copilot and LLM assistants.",
+      "No single-person dependency left across 250+ processes: runbooks, standard operating procedures and Tableau dashboards let teammates and stakeholders self-serve.",
+      "Graduate Engineer Trainee: moved into a specialized Data Engineer track within 3 months, ahead of schedule, working in Python, SQL, Snowflake and Oracle.",
     ],
   },
   {

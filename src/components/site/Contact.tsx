@@ -14,8 +14,9 @@ export default function Contact() {
             Hiring for a Spring 2027 co-op? Let&apos;s talk.
           </h3>
           <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
-            I&apos;m looking for an ML, AI / LLM, or software engineering co-op. Message me here or by
-            email and I&apos;ll usually reply within a few hours.
+            If your team needs ML or AI that holds up in production, I&apos;d like to hear what
+            you&apos;re building. Send a message here or by email; replies usually come within a few
+            hours.
           </p>
           <dl className="mx-auto mt-6 grid max-w-2xl gap-px overflow-hidden rounded-xl border border-line bg-line text-left sm:grid-cols-2">
             {recruiterFacts.map((f) => (
