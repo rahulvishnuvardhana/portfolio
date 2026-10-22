@@ -28,6 +28,14 @@ export default function Publications() {
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {p.description}
                 </p>
+                <a
+                  href="https://ijetms.in/Vol-6-issue-4/Vol-6-Issue-4-47.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex text-xs font-medium text-accent hover:underline"
+                >
+                  Read the paper (PDF)
+                </a>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {p.stack.map((s) => (
                     <li

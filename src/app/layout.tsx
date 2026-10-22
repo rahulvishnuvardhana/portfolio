@@ -5,6 +5,9 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import ScrollProgress from "@/components/site/ScrollProgress";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import ChatWidget from "@/components/site/ChatWidget";
+import DotField from "@/components/site/DotField";
+import ChapterDock from "@/components/site/ChapterDock";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,22 +30,22 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rahul Vishnuvardhana — Applied ML Engineer",
+  title: "Rahul Vishnuvardhana · ML & AI Engineer, Spring 2027 co-op",
   description:
-    "Applied Machine Learning Engineer. Temporal sequence modeling, data-efficient learning, banking-grade ML systems.",
+    "ML and AI engineer pursuing an M.S. in ECE at Northeastern, with 3+ years running data pipelines for Brown Brothers Harriman. Builds production ML and grounded AI tools. Available for a Spring 2027 co-op.",
   authors: [{ name: "Rahul Vishnuvardhana" }],
   keywords: [
-    "Applied ML",
     "Machine Learning Engineer",
-    "Temporal Sequence Modeling",
-    "Banking ML",
+    "AI Engineer",
+    "LLM Engineer",
+    "Software Engineer",
+    "Spring 2027 co-op",
     "Northeastern University",
-    "Portfolio",
   ],
   openGraph: {
-    title: "Rahul Vishnuvardhana — Applied ML Engineer",
+    title: "Rahul Vishnuvardhana · ML & AI Engineer, Spring 2027 co-op",
     description:
-      "Building banking-grade ML systems that predict failure before it happens.",
+      "Production ML and grounded AI tools, 3+ years of data engineering at Brown Brothers Harriman. Available for a Spring 2027 co-op.",
     type: "website",
   },
 };
@@ -66,8 +69,13 @@ export default function RootLayout({
         <SmoothScroll>
           <ScrollProgress />
           <Navbar />
-          <main className="mx-auto max-w-[44rem] px-6">{children}</main>
-          <Footer />
+          <DotField />
+          <main className="relative z-[1] mx-auto max-w-6xl px-5 sm:px-8">{children}</main>
+          <div className="relative z-[1]">
+            <Footer />
+          </div>
+          <ChatWidget />
+          <ChapterDock />
         </SmoothScroll>
       </body>
     </html>

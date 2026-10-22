@@ -330,6 +330,62 @@ body {
   animation: glitch-logo-bottom 2.8s infinite linear;
 }
 
+/* Project rows: cursor spotlight on the row, gentle 3D tilt on the demo panel.
+   --mx/--my/--rx/--ry are written by ProjectCard on pointer move. */
+.project-card {
+  --mx: 50%;
+  --my: 50%;
+  --rx: 0deg;
+  --ry: 0deg;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.project-card[data-active="true"] {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow: 0 24px 50px -30px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.project-tilt {
+  transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.6s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+  will-change: transform;
+}
+.project-card[data-active="true"] .project-tilt {
+  transition: transform 0.15s ease-out;
+}
+.project-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    560px circle at var(--mx) var(--my),
+    color-mix(in srgb, var(--accent) 11%, transparent),
+    transparent 60%
+  );
+}
+.project-card[data-active="true"] .project-spotlight {
+  opacity: 1;
+}
+
+/* Trajectory preview: forecast line re-draws while the card is active */
+@keyframes traj-draw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  70%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.traj-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: traj-draw 3s ease-in-out infinite;
+}
+
 /* Button hover lift (subtle) */
 .lift {
   transition:
@@ -354,5 +410,34 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Section headlines: italic accent word + word-by-word reveal on scroll (Chromium);
+   other browsers simply show the text. */
+.accent-word {
+  font-style: italic;
+  color: var(--accent);
+}
+@supports (animation-timeline: view()) {
+  @keyframes word-in {
+    from {
+      opacity: 0.12;
+      filter: blur(3px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+  .reveal-word {
+    animation: word-in linear both;
+    animation-timeline: view();
+    animation-range: entry calc(var(--i) * 4%) cover calc(22% + var(--i) * 3%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word {
+    animation: none;
   }
 }

@@ -1,5 +1,6 @@
-import { Mail } from "lucide-react";
-import { profile } from "@/data/portfolio";
+import { Mail, MessageCircle } from "lucide-react";
+import OpenChatButton from "./OpenChatButton";
+import { profile, recruiterFacts } from "@/data/portfolio";
 import Section from "./Section";
 import BlurFade from "./BlurFade";
 import { GithubIcon, LinkedinIcon } from "./icons";
@@ -8,15 +9,30 @@ export default function Contact() {
   return (
     <Section id="contact" title="Contact">
       <BlurFade>
-        <div className="rounded-xl border border-line bg-card p-8 text-center">
+        <div className="rounded-2xl border border-line bg-card p-8 text-center sm:p-12">
           <h3 className="font-serif text-3xl font-semibold text-foreground">
-            Let&apos;s build something reliable.
+            Hiring for a Spring 2027 co-op? Let&apos;s talk.
           </h3>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
-            Open to co-op and full-time roles where ML solves real problems.
-            Whether you have an opening, a hard problem, or just want to chat over
-            coffee, my inbox is always open.
+          <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
+            I&apos;m looking for an ML, AI / LLM, or software engineering co-op. Message me here or by
+            email and I&apos;ll usually reply within a few hours.
           </p>
+          <dl className="mx-auto mt-6 grid max-w-2xl gap-px overflow-hidden rounded-xl border border-line bg-line text-left sm:grid-cols-2">
+            {recruiterFacts.map((f) => (
+              <div key={f.label} className="bg-card px-4 py-3">
+                <dt className="font-mono text-[10px] tracking-wider text-faint uppercase">{f.label}</dt>
+                <dd className="mt-0.5 text-sm text-foreground">{f.value}</dd>
+              </div>
+            ))}
+            <div className="bg-card px-4 py-3">
+              <dt className="font-mono text-[10px] tracking-wider text-faint uppercase">Resume</dt>
+              <dd className="mt-0.5 text-sm">
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline">
+                  View or download (PDF)
+                </a>
+              </dd>
+            </div>
+          </dl>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
             <a
               href={`mailto:${profile.email}`}
@@ -26,6 +42,10 @@ export default function Contact() {
               <Mail className="h-4 w-4" />
               Mail
             </a>
+            <OpenChatButton className="inline-flex items-center gap-2 rounded-md border border-accent/50 px-4 py-2 text-sm font-medium text-accent transition-colors hover:border-accent lift">
+              <MessageCircle className="h-4 w-4" />
+              Chat with me
+            </OpenChatButton>
             <a
               href={`mailto:${profile.email}?subject=${encodeURIComponent(
                 "Coffee chat ☕",

@@ -3,8 +3,8 @@ export const profile = {
   firstName: "Rahul",
   lastNameTop: "Vishnu",
   lastNameBottom: "vardhana",
-  kicker: "Machine Learning Engineer",
-  role: "I build machine learning systems that turn messy, real-world data into decisions people can trust, in banking, fintech, and beyond.",
+  kicker: "ML & AI Engineer",
+  role: "I build ML and AI systems that hold up in production: a gateway that keeps apps online when an API fails, and an AI copilot that never makes things up. Before Northeastern, I spent 3+ years keeping data pipelines running for Brown Brothers Harriman.",
   tagline: "Applied ML · Sequence Modeling · Anomaly Detection · Data-Efficient Learning",
   mission: "Turning messy, real-world data into predictive, deployable systems.",
   location: "Boston, MA",
@@ -12,6 +12,7 @@ export const profile = {
   phone: "+1 (617) 602-8473",
   linkedin: "https://www.linkedin.com/in/rahulvishnuvardhana",
   github: "https://github.com/rahulvishnuvardhana",
+  availability: "Available for a Spring 2027 co-op",
 };
 
 export const introPhrases = [
@@ -24,7 +25,7 @@ export const introPhrases = [
 
 export const about = {
   paragraphs: [
-    "I'm a machine learning engineer, currently finishing my Master's in Computer Engineering at Northeastern University on the Machine Intelligence track. Before graduate school, I spent more than three years as a software and data engineer at Hexaware Technologies, building ETL pipelines and data-integration systems for banking clients. That work taught me how to turn messy, high-volume data into something reliable enough to run a business on.",
+    "I'm a machine learning engineer, currently pursuing my M.S. in Electrical and Computer Engineering at Northeastern University, concentrating in hardware and software for machine intelligence. Before graduate school, I spent more than three years as a software and data engineer at Hexaware Technologies on the data warehouse and reporting team for Brown Brothers Harriman, building ETL pipelines and keeping business-critical jobs running. That work taught me how to turn messy, high-volume data into something reliable enough to run a business on.",
     "Today I build machine learning systems that solve real problems: predicting failures before they happen, catching anomalies in live data streams, and producing calibrated probabilities that teams can actually act on. I gravitate toward banking and fintech because that is where the problems are hardest and the cost of being wrong is highest, but the work isn't tied to any one industry. Wherever data is scarce, noisy, or imbalanced, that is where I do my best work.",
     "My path into applied ML started in undergrad, where my thesis on automated grain-quality assessment became my first peer-reviewed publication. The thread from grain images to banking-API failures has stayed the same the whole way through: take noisy real-world signals, learn the structure inside them, and ship something useful. I care about the engineering around a model as much as the model itself, so I lean on observability, ablation studies, and clear runbooks before I trust anything in production.",
     "My biggest strength is how quickly I pick things up. Drop me into a new stack, framework, or research area and I will be shipping in it within a week. My honest weakness is the flip side of that: I lean perfectionist, and I have had to learn that a solid solution delivered on time usually beats a perfect one that arrives late.",
@@ -72,6 +73,26 @@ export const about = {
   },
 };
 
+/** What a recruiter needs to decide, answered up front (shown in Contact). */
+export const recruiterFacts = [
+  { label: "Looking for", value: "Spring 2027 co-op" },
+  { label: "Roles", value: "ML Engineer · AI / LLM Engineer · Software Engineer" },
+  { label: "Work authorization", value: "Authorized for co-op via CPT" },
+  { label: "Based in", value: "Boston, MA" },
+  { label: "Reply time", value: "Usually within a few hours, here or by email" },
+];
+
+/** "Roles I fit" strip: each role links to the projects that prove it. */
+export const roleFit = [
+  { role: "ML Engineer", proof: ["LEO Gateway", "RNN vs. Transformer"] },
+  { role: "AI / LLM Engineer", proof: ["TraceOp", "LOEWISE"] },
+  { role: "Software Engineer", proof: ["TraceOp", "BayState Ghilli"] },
+];
+
+/** URL-safe id for a project row, so other parts of the page can link to it. */
+export const projectSlug = (title: string) =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 export type Project = {
   tag: string;
   title: string;
@@ -80,19 +101,33 @@ export type Project = {
   highlights?: string[];
   stack: string[];
   links?: { label: string; href: string }[];
+  /** one-sentence pitch shown first on the project row */
+  summary?: string;
+  /** three scannable results */
+  outcomes?: string[];
+  /** hover preview: poster + lazily loaded screen recording */
+  media?: { poster: string; video?: string; alt?: string };
+  /** code-drawn preview used when there is no recording */
+  preview?: "trajectory";
 };
 
 export const projects: Project[] = [
   {
-    tag: "Flagship · Independent Research · Deployed",
-    title: "LEO API Intelligence",
-    accent: "",
+    tag: "Flagship · Independent Project · Spring 2026 · Live",
+    title: "LEO Gateway",
+    accent: "Failover gateway that keeps API traffic alive through provider outages",
+    summary: "Keeps apps working when an API provider goes down: it predicts failures before they happen and reroutes live requests to a healthy provider.",
+    outcomes: [
+      "Python gateway on FastAPI and Docker that detects 5xx, 429 and timeout errors and retries requests on a healthy provider",
+      "Bi-LSTM with multi-head attention and focal loss on 1.94M rows: average ROC-AUC 0.8202 and PR-AUC 0.5383 across 1, 5 and 15-step horizons",
+      "Conformal prediction for calibrated risk scores, with ablation studies isolating what drove performance",
+    ],
     description:
-      "A multi-horizon deep learning system that analyzes banking API failure patterns to support operational decision-making. I built a bidirectional 2-layer LSTM with multi-head attention and Conv1d feature extraction, trained with Focal Loss (γ=3.0) across 5 API types at horizons of 1, 5, and 15 steps. I engineered a 1.94M-row hybrid dataset from five real-world Kaggle sources (NAB EC2, Credit Card Fraud, PaySim, Network Anomaly, Web Logs) with 43 features and per-API scaling, reaching ROC-AUC 0.8088 and PR-AUC 0.5132. I validated it with ablation studies, conformal prediction, and agent simulations, then deployed an interactive FastAPI dashboard on Render, training on dual-GPU Kaggle T4×2 via PyTorch DataParallel.",
+      "A multi-horizon deep learning system that analyzes banking API failure patterns to support operational decision-making. I built a bidirectional 2-layer LSTM with multi-head attention and Conv1d feature extraction, trained with Focal Loss (γ=3.0) across 5 API types at horizons of 1, 5, and 15 steps. I engineered a 1.94M-row hybrid dataset from five real-world Kaggle sources (NAB EC2, Credit Card Fraud, PaySim, Network Anomaly, Web Logs) with 43 features and per-API scaling, reaching an average ROC-AUC of 0.8202 and PR-AUC of 0.5383 across the 1, 5, and 15-step horizons. I validated it with ablation studies, conformal prediction, and agent simulations, then wrapped it in a FastAPI and Docker reverse-proxy gateway that retries in-flight requests on a healthy provider when it sees 5xx, 429, or timeout errors. Trained on dual-GPU Kaggle T4×2 via PyTorch DataParallel and deployed live on Render.",
     highlights: [
       "1.94M-row hybrid dataset",
-      "ROC-AUC 0.8088",
-      "PR-AUC 0.5132",
+      "avg ROC-AUC 0.8202",
+      "avg PR-AUC 0.5383",
       "5 API types",
       "horizons h=1, 5, 15",
       "43 features",
@@ -105,21 +140,29 @@ export const projects: Project[] = [
       "Focal Loss",
       "Conformal Prediction",
       "FastAPI",
+      "Docker",
       "Render",
     ],
     links: [
       { label: "GitHub", href: "https://github.com/rahulvishnuvardhana/Leo_Api_Intelligence" },
-      { label: "Live API", href: "https://leo-api-intelligence.onrender.com" },
+      { label: "Live demo", href: "https://leo-api-intelligence.onrender.com" },
     ],
+    media: { poster: "/projects/leo-poster.jpg", video: "/projects/leo.mp4", alt: "LEO live demo re-scoring API failure risk across scenarios" },
   },
   {
-    tag: "AI Product · Multi-User · Live",
+    tag: "Independent Project · Summer 2026 · Live",
     title: "TraceOp",
     accent: "AI Copilot for the RA/TA and Co-op Hunt",
+    summary: "Helps Northeastern grad students find real research, teaching, and co-op roles, then drafts outreach that never invents a skill or a number.",
+    outcomes: [
+      "2,693 Northeastern faculty across 7 colleges in one search, plus OpenAlex, NSF and NIH data",
+      "Live postings from the Greenhouse, Lever, Ashby and Workday boards, fit-scored and eligibility-aware",
+      "pgvector retrieval so Gemini drafts never invent a skill, metric or date, tested with Vitest and Playwright",
+    ],
     description:
-      "A multi-user AI copilot for Northeastern graduate students hunting research, teaching, and co-op roles, built on one rule: never fabricate. It pulls live co-op roles from public ATS boards (Greenhouse, Lever, Ashby, Workday) and a directory of 2,600+ Northeastern faculty across 7 colleges, scores fit honestly, and flags work-authorization blockers (F-1, CPT, OPT) before any effort is spent. Gemini, streamed through the Vercel AI SDK, drafts outreach, tailored resumes, and arXiv paper briefs grounded only in each user's own profile and resume, flagging gaps instead of inventing them. I added RAG over pgvector for outreach, isolated every account with Supabase row-level security, and exposed the copilot as agent tools through an MCP server.",
+      "A multi-user AI copilot for Northeastern graduate students hunting research, teaching, and co-op roles, built on one rule: never fabricate. It pulls live co-op roles from public ATS boards (Greenhouse, Lever, Ashby, Workday) and a directory of 2,693 Northeastern faculty across 7 colleges, scores fit honestly, and flags work-authorization blockers (F-1, CPT, OPT) before any effort is spent. Gemini, streamed through the Vercel AI SDK, drafts outreach, tailored resumes, and arXiv paper briefs grounded only in each user's own profile and resume, flagging gaps instead of inventing them. I added RAG over pgvector for outreach, isolated every account with Supabase row-level security, and exposed the copilot as agent tools through an MCP server.",
     highlights: [
-      "2,600+ faculty across 7 colleges",
+      "2,693 faculty across 7 colleges",
       "4 public ATS sources",
       "RAG on pgvector",
       "per-user grounding",
@@ -128,29 +171,64 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Supabase", "pgvector", "Gemini", "Vercel AI SDK", "MCP", "Playwright"],
     links: [{ label: "Live App", href: "https://v0-traceop.vercel.app" }],
+    media: { poster: "/projects/traceop-poster.jpg", video: "/projects/traceop.mp4", alt: "TraceOp landing page and product views" },
+  },
+  {
+    tag: "Independent Project · In Progress · Fall 2026",
+    title: "LOEWISE",
+    accent: "Retrieval system that answers questions across FDA drug and patent records",
+    summary: "Answers drug patent questions from cited FDA and patent records, and flags any answer it cannot back up for human review.",
+    outcomes: [
+      "Prototyping agentic retrieval in Python over FDA Orange Book and patent records, answering from cited sources",
+      "Tests each answer against its source document and flags low-confidence extractions for human review",
+      "Cross-references Orange Book patent use codes with FDA labeling to flag where coverage exceeds approved uses",
+    ],
+    description:
+      "An in-progress independent project. I am prototyping an agentic retrieval pipeline in Python over FDA Orange Book and patent records that answers drug patent questions from cited sources instead of scattered documents. Every answer is tested against its source document, and low-confidence extractions are flagged for human review so unverified answers never reach users. It also cross-references Orange Book patent use codes with FDA labeling to flag where coverage exceeds approved uses.",
+    stack: ["Python", "Agentic Retrieval", "RAG", "FDA Orange Book", "Patent Data", "Human Review"],
   },
   {
     tag: "Hackathon · Dell x NVIDIA · Team of 3",
     title: "Site Safety Watch",
     accent: "On-Device Vision Agent for Workplace Hazards",
+    summary: "Spots a blocked fire exit on a site camera and alerts the supervisor in Slack, with the video never leaving the building.",
+    outcomes: [
+      "I owned evaluation: labelled clips and an eval harness comparing 6 detection settings",
+      "Measured 0.57 s per camera check and capacity for 24 cameras on one box",
+      "Alerts cite OSHA 29 CFR 1910.37; raw video never leaves the box",
+    ],
     description:
       "An always-on safety agent my team built in one day at the Dell x NVIDIA AI Hackathon in Boston. It checks each camera frame with a local vision-language model (Qwen on vLLM), and when an exit is blocked, posts the hazard, the OSHA rule (29 CFR 1910.37), and a proposed fix to Slack for a supervisor to approve or reject. All inference runs on one Dell Pro Max with GB10, so raw video never leaves the box. I owned evaluation and the story: I filmed and labelled the test clips (phone, CCTV-angle, dim, degraded 360p), built the eval harness comparing six detection settings, and wrote the slides and writeup. Measured on the box: 0.57 s per camera check and capacity for 24 cameras.",
     stack: ["Python", "Evaluation Harness", "OpenCV", "ffmpeg", "vLLM", "Vision-Language Models", "NVIDIA GB10"],
     links: [{ label: "GitHub", href: "https://github.com/hemnaath04/site-safety-watch" }],
+    media: { poster: "/projects/ssw-poster.jpg", video: "/projects/ssw.mp4", alt: "Site Safety Watch project page with measured results" },
   },
   {
     tag: "Product · Offline PWA · Live",
     title: "BayState Ghilli",
     accent: "Massachusetts Learner's Permit Practice",
+    summary: "Helps Massachusetts learners pass the permit test with free, offline practice exams that bring back the questions they miss.",
+    outcomes: [
+      "372 original questions across 7 categories with timed mock exams",
+      "Leitner-style spaced repetition brings a missed question back on the next exam",
+      "Installable PWA: the core needs no account or backend",
+    ],
     description:
       "A free, offline-first practice app for the Massachusetts learner's permit exam, with 372 original questions across 7 categories, timed mock exams built to difficulty targets, and Leitner-style spaced repetition that brings a missed question back on the very next exam. The core runs entirely in the browser as an installable PWA with progress kept on the device, so it needs no account or backend. Optional features switch on only with credentials: a moderated review system on Supabase behind an 18+ age gate, and a daily GitHub Actions monitor that emails me through Resend when the official manual changes, checking only metadata, never the PDF itself.",
     stack: ["React", "TypeScript", "Vite", "PWA", "Supabase", "GitHub Actions", "Resend", "Vitest"],
     links: [{ label: "Live App", href: "https://baystateghilli.vercel.app" }],
+    media: { poster: "/projects/ghilli-poster.jpg", video: "/projects/ghilli.mp4", alt: "BayState Ghilli practice exam in action" },
   },
   {
     tag: "Project · Robotics · Sequence Modeling",
     title: "RNN vs. Transformer",
     accent: "Robot Trajectory Prediction",
+    summary: "Tested which model predicts where a robot moves next more accurately: a classic recurrent network or a physics-informed Transformer.",
+    outcomes: [
+      "RNN baseline reached ADE 0.1494 m, FDE 0.3509 m, MSE 0.0214",
+      "Added physics-based kinematics to a linear Transformer for efficiency",
+      "Full technical report with a systematic benchmark across metrics",
+    ],
     description:
       "A comparative study of a recurrent baseline against a Transformer for spatiotemporal robot trajectory prediction on the NCLT (North Campus Long-Term) autonomous-vehicle dataset. I built a complete 5-script RNN pipeline that reached 0.1494m ADE, 0.3509m FDE, and 0.0214 MSE (early stopping at epoch 74), after tracking down a NumPy normalization bug, and wrote a full technical report. I then introduced physics-based kinematics into a linear Transformer to improve computational efficiency and predictive accuracy, and benchmarked it systematically against the RNN baseline across every metric.",
     highlights: [
@@ -165,10 +243,11 @@ export const projects: Project[] = [
     links: [
       { label: "GitHub", href: "https://github.com/rahulvishnuvardhana/robot-trajectory-rnn-vs-transformer" },
     ],
+    preview: "trajectory",
   },
   {
     tag: "Publication · Peer-Reviewed",
-    title: "ML-Based Grain Quality Assessment",
+    title: "Machine Learning Based Image Analysis for Grain Quality Assessment",
     accent: "",
     description:
       "My undergraduate thesis on automated grain-quality assessment using classical machine learning and computer vision. I built an image-processing pipeline that extracts shape, texture, and color features from grain images under controlled lighting, then classifies grade and quality with SVM and Random Forest models. I validated it on a curated multi-variety dataset and published the work in the International Journal of Engineering Technology and Management Sciences (Vol. 6, July 2022). It was my first peer-reviewed contribution and the foundation of everything I've built since: take noisy real-world signals, learn the structure inside them, and ship something useful.",
@@ -186,83 +265,73 @@ export type SkillCol = { title: string; items: { name: string; level: string }[]
 
 export const skills: SkillCol[] = [
   {
-    title: "AI / ML",
+    title: "Programming",
     items: [
-      { name: "PyTorch", level: "core" },
-      { name: "LSTM / Bi-LSTM", level: "strong" },
-      { name: "Multi-Head Attention", level: "applied" },
-      { name: "Conv1d / Conv2d", level: "applied" },
-      { name: "Transformer", level: "applied" },
-      { name: "Seq2Seq Models", level: "applied" },
-      { name: "Focal Loss", level: "applied" },
-      { name: "XGBoost", level: "strong" },
-      { name: "Scikit-learn", level: "core" },
-      { name: "Computer Vision", level: "applied" },
-      { name: "River (Online Learning)", level: "applied" },
-      { name: "LLMs", level: "applied" },
-      { name: "LLM Agents & MCP", level: "applied" },
-      { name: "RAG", level: "applied" },
-      { name: "Embeddings & Vector Search", level: "applied" },
+      { name: "Python", level: "" },
+      { name: "SQL", level: "" },
+      { name: "TypeScript", level: "" },
+      { name: "Bash", level: "" },
+      { name: "Data Structures", level: "" },
+      { name: "Algorithms", level: "" },
     ],
   },
   {
-    title: "Data Science",
+    title: "Machine Learning",
     items: [
-      { name: "Python", level: "primary" },
-      { name: "Pandas / NumPy", level: "core" },
-      { name: "SQL", level: "strong" },
-      { name: "R", level: "applied" },
-      { name: "MATLAB", level: "applied" },
-      { name: "Matplotlib", level: "applied" },
-      { name: "Seaborn", level: "applied" },
-      { name: "Conformal Prediction", level: "applied" },
+      { name: "PyTorch", level: "" },
+      { name: "LSTM / Bi-LSTM", level: "" },
+      { name: "Multi-Head Attention", level: "" },
+      { name: "Focal Loss", level: "" },
+      { name: "Conformal Prediction", level: "" },
+      { name: "Ablation Studies", level: "" },
+      { name: "Transformers", level: "" },
     ],
   },
   {
-    title: "Front-End / Viz",
+    title: "Artificial Intelligence",
     items: [
-      { name: "FastAPI", level: "deployed" },
-      { name: "REST APIs", level: "strong" },
-      { name: "Next.js", level: "deployed" },
-      { name: "React", level: "deployed" },
-      { name: "TypeScript", level: "applied" },
-      { name: "Tailwind CSS", level: "applied" },
-      { name: "Grafana", level: "applied" },
-      { name: "Dashboard Design", level: "applied" },
-      { name: "HTML / CSS", level: "applied" },
+      { name: "LLMs", level: "" },
+      { name: "RAG", level: "" },
+      { name: "Agentic Frameworks", level: "" },
+      { name: "Prompt Engineering", level: "" },
+      { name: "Vector Search", level: "" },
+      { name: "pgvector", level: "" },
+      { name: "MCP", level: "" },
     ],
   },
   {
-    title: "Conceptual Knowledge",
+    title: "Data and Orchestration",
     items: [
-      { name: "Banking ETL & Data Integration", level: "strong" },
-      { name: "Multi-tenant Data Isolation", level: "applied" },
-      { name: "Streaming ML Architecture", level: "applied" },
-      { name: "Online Learning", level: "applied" },
-      { name: "Temporal Sequence Modeling", level: "strong" },
-      { name: "Ablation Studies", level: "applied" },
-      { name: "Defensive Engineering", level: "strong" },
-      { name: "Data Quality Validation", level: "strong" },
+      { name: "Snowflake", level: "" },
+      { name: "Oracle", level: "" },
+      { name: "PostgreSQL", level: "" },
+      { name: "ETL", level: "" },
+      { name: "Database Migrations", level: "" },
+      { name: "AutoSys", level: "" },
+      { name: "Redwood", level: "" },
+      { name: "Supabase", level: "" },
     ],
   },
   {
-    title: "Cloud & Tools",
+    title: "Development",
     items: [
-      { name: "Microsoft Azure (AZ-900, DP-203)", level: "certified" },
-      { name: "Git / GitHub", level: "daily" },
-      { name: "Linux / Unix", level: "strong" },
-      { name: "Docker", level: "applied" },
-      { name: "Apache Kafka", level: "applied" },
-      { name: "Redis", level: "applied" },
-      { name: "Render.com", level: "deployed" },
-      { name: "Vercel", level: "deployed" },
-      { name: "Supabase (Postgres, RLS)", level: "deployed" },
-      { name: "GitHub Actions", level: "applied" },
-      { name: "Playwright / Vitest", level: "applied" },
-      { name: "AutoSys", level: "prod" },
-      { name: "Redwood RunMyJob", level: "prod" },
-      { name: "ODI (Oracle Data Integrator)", level: "prod" },
-      { name: "SQLite", level: "applied" },
+      { name: "REST APIs", level: "" },
+      { name: "FastAPI", level: "" },
+      { name: "Next.js", level: "" },
+      { name: "Docker", level: "" },
+      { name: "Git", level: "" },
+      { name: "GitHub Copilot", level: "" },
+      { name: "Linux", level: "" },
+      { name: "Tableau", level: "" },
+      { name: "Playwright", level: "" },
+      { name: "Vercel", level: "" },
+    ],
+  },
+  {
+    title: "Cloud Certificates",
+    items: [
+      { name: "Azure Data Engineer Associate (DP-203)", level: "" },
+      { name: "Azure Fundamentals (AZ-900)", level: "" },
     ],
   },
 ];
@@ -271,6 +340,8 @@ export type Milestone = {
   when: string;
   title: string;
   org: string;
+  /** progression within one employer, newest first */
+  roles?: { title: string; when: string }[];
   body?: string;
   bullets?: string[];
   courses?: string[];
@@ -278,41 +349,41 @@ export type Milestone = {
 
 export const journey: Milestone[] = [
   {
-    when: "Jan 2026 — May 2028",
+    when: "Jan 2026 to May 2028",
     title: "M.S., Electrical & Computer Engineering",
-    org: "Northeastern University · Boston, MA · Machine Intelligence Track · GPA 3.8",
+    org: "Northeastern University · Boston, MA · GPA 3.8",
     bullets: [
-      "Specializing in applied machine learning: deep learning, probabilistic modeling, sequence models, and deployable ML systems.",
+      "Concentration: Hardware and Software in Machine Intelligence.",
       "Building on 3+ years of industry data engineering to move from data pipelines into production ML.",
     ],
     courses: [
-      "EECE 5644 — Machine Learning & Pattern Recognition",
-      "EECE 7205 — Fundamentals of Computer Engineering",
+      "Machine Learning",
+      "Large Language Models",
+      "Reinforcement Learning",
+      "Fundamentals of Computer Engineering",
     ],
   },
   {
-    when: "Mar 2023 — Sep 2025",
-    title: "Software Engineer",
-    org: "Hexaware Technologies · Chennai, India · Banking ETL & Data Integration",
+    when: "Mar 2022 to Sep 2025",
+    title: "Software Engineer, Data Warehouse and Reporting",
+    org: "Hexaware Technologies · Client: Brown Brothers Harriman · India",
+    roles: [
+      { title: "Software Engineer, Data Warehouse and Reporting", when: "Sep 2022 to Sep 2025" },
+      { title: "Graduate Engineer Trainee", when: "Mar 2022 to Aug 2022" },
+    ],
     bullets: [
-      "Evaluated and advised on cloud infrastructure and document/data-retrieval architectures on Microsoft Azure, comparing tools and services to support scalable data-processing and analytics workflows and inform tool-adoption decisions.",
-      "Designed and maintained ETL pipelines integrating REST APIs, SFTP feeds, and SQL databases, monitoring batch execution and pipeline health in real time and resolving failures through root-cause analysis.",
-      "Authored technical documentation, SOPs, and runbooks that translated complex systems into accessible formats for non-technical stakeholders, and built structured evaluation frameworks for new-tool decisions.",
+      "Improved average incident resolution time by 50% across 50+ business-critical AutoSys and Redwood pipelines on Linux, instrumenting each job with structured logging and tracing failures through execution metrics to root cause.",
+      "Held business-reported data discrepancies to a maximum of 5 per month with Python services that validated API payloads and CSV feeds at ingest and reconciled them against source using row counts and checksums.",
+      "Designed ETL pipelines and database migrations in Python, SQL and Oracle Data Integrator that consolidated 8+ source systems into analytics-ready tables, turning an hour-long manual report into automated same-day delivery.",
+      "Refactored one-off scripts into reusable object-oriented components with help from GitHub Copilot and LLM assistants, standardizing configuration and database connections across the codebase.",
+      "Eliminated a single-person dependency across 250+ processes through runbooks, standard operating procedures and Tableau dashboards that let teammates and stakeholders self-serve.",
+      "As a Graduate Engineer Trainee, applied Python, SQL, Snowflake and Oracle across the graduate program and advanced into a specialized Data Engineer track within 3 months, ahead of schedule.",
     ],
   },
   {
-    when: "Mar 2022 — Feb 2023",
-    title: "Associate Software Engineer",
-    org: "Hexaware Technologies · Chennai, India",
-    bullets: [
-      "Developed and tested API integrations and data-ingestion workflows, validating payload accuracy and enforcing data-quality checks.",
-      "Documented end-to-end data workflows and communicated resolution steps clearly across cross-functional teams, self-teaching new tooling as project requirements evolved.",
-    ],
-  },
-  {
-    when: "Aug 2018 — Apr 2022",
+    when: "Aug 2018 to Apr 2022",
     title: "B.E., Electronics & Communication Engineering",
-    org: "Sri Sairam Engineering College · Chennai, India · GPA 3.4/4.0",
+    org: "Sri Sairam Engineering College, Anna University · Chennai, India · GPA 3.4/4.0",
     bullets: [
       "Specialized in Electronics & Communication Engineering with hands-on work in embedded systems and machine learning.",
       "Authored an undergraduate thesis on ML-based grain-quality assessment that became my first peer-reviewed publication and set my applied-ML trajectory.",
